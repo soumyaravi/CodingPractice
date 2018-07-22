@@ -1,14 +1,24 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-	int i=0, j= nums.length -1;
-        while(i<j){
-            if(nums[i] + nums[j] > target)
-                j--;
-            else if(nums[i] + nums[j] < target)
-                i++;
+        HashSet<Integer> set = new HashSet<>();
+        int num=target;
+        int res[] = new int[2];
+        for(int i=0;i<nums.length;i++){
+            if(set.contains(nums[i])){
+                res[1] = i;
+                num = target-nums[i];
+                break;
+            }
             else
-                return new int[] {i,j};
+                set.add(target-nums[i]);
         }
-        return new int[2];
+        System.out.println(num);
+        for(int i=0;i<res[1];i++){
+            if(nums[i] == num){
+                res[0] = i;
+                break;
+            }
+        }
+        return res;
     }
 }
